@@ -9,7 +9,7 @@ import SiteFooter from '@/components/home/SiteFooter.vue'
 
 <template>
   <div class="home">
-    <SiteHeader />
+    <SiteHeader /> 
     <HeroSection />
     <CanvasBanner />
     <SkillSection />
