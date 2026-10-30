@@ -1,0 +1,75 @@
+/* 灵想剧创 - 全局样式（暗色主题，PC 优先，方案①：固定容器 + 媒体查询） */
+:root {
+  --bg-page: #070b12;
+  --bg-panel: #0c1320;
+  --bg-card: #0e1626;
+  --bg-input: #101a2b;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --cyan: #3fe0dd;
+  --cyan-soft: #56d8e8;
+  --cyan-deep: #1fb6c9;
+  --gold: #e8b33d;
+  --gold-bg: rgba(120, 84, 20, 0.35);
+  --text-1: #f4f7fa;
+  --text-2: #9aa7b8;
+  --text-3: #A8BFC9;
+  --container: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg-page);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-1);
+  background: var(--bg-page);
+  line-height: 1.6;
+  font-family:
+    'PingFang SC',
+    'Microsoft YaHei',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+@media (max-width: 1366px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

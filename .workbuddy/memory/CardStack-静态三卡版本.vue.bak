@@ -1,0 +1,154 @@
+<script setup>
+import { assetUrl } from '@/utils/assets'
+
+/* 三卡数据：左右卡纯图，中间卡带文字 */
+const cards = [
+  { title: '', img: 'lunbo1.png', featured: false },
+  { title: '霓虹之后', img: 'lunbo2.png', featured: true },
+  { title: '', img: 'lunbo3.png', featured: false },
+]
+</script>
+
+<template>
+  <div class="card-stack">
+    <div
+      v-for="(card, i) in cards"
+      :key="i"
+      class="card"
+      :class="{ featured: card.featured }"
+    >
+      <div class="card-img">
+        <img :src="assetUrl(card.img)" :alt="card.title" />
+      </div>
+
+      <!-- 仅中间卡显示底部文字 -->
+      <div v-if="card.featured" class="card-body">
+        <div class="card-info">
+          <p class="card-label">FEATURED STORY</p>
+          <h3 class="card-title">{{ card.title }}</h3>
+        </div>
+        <img class="card-play" :src="assetUrl('paly2Icon.png')" alt="播放" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  flex: 0 0 40%;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card-img {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  background: rgba(8, 13, 22, 0.92);
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* 中间卡：1920 设计稿 453×427，圆角 27，背景 #09141A，等比缩放 */
+.card.featured {
+  z-index: 3;
+  flex: 0 0 auto;
+  width: clamp(280px, 23.6vw, 453px);
+  height: clamp(264px, 22.2vw, 427px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 27px;
+  background: #09141a;
+  margin: 0 -6%;
+  padding: clamp(10px, 0.83vw, 16px);
+  box-sizing: border-box;
+  opacity: 1;
+}
+
+.card.featured .card-img {
+  flex: 1;
+  border-radius: 18px;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65);
+}
+
+.card.featured .card-img img {
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* 左右卡：1920 设计稿 331×333，圆角 24，背景 #08141A，等比缩放 */
+.card:not(.featured) {
+  z-index: 1;
+  flex: 0 0 auto;
+  width: clamp(200px, 17.2vw, 331px);
+  height: clamp(200px, 17.3vw, 333px);
+  border-radius: 24px;
+  background: #08141a;
+  overflow: hidden;
+  padding: clamp(10px, 0.83vw, 16px);
+  box-sizing: border-box;
+  transform: scale(0.92);
+  opacity: 0.55;
+  filter: brightness(0.7);
+}
+
+.card:not(.featured) .card-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.card:not(.featured) .card-img img {
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* 中间卡底部文字区 */
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(6px, 0.63vw, 12px) 0 0;
+  background: transparent;
+}
+
+.card-label {
+  margin-top: clamp(8px, 0.73vw, 14px);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--cyan);
+}
+
+.card-title {
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.card-play {
+  width: clamp(16px, 1.25vw, 24px);
+  height: clamp(16px, 1.25vw, 24px);
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+</style>
